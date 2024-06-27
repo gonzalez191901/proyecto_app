@@ -32,4 +32,8 @@ class HomeController extends Controller
         return Publicacione::with('user')->get();
         
     }
+
+    public function hola(){
+        echo "HOLA";
+    }
 }
