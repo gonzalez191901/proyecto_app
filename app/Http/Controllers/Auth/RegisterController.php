@@ -109,12 +109,12 @@ class RegisterController extends Controller
         $user->fecha_naci = $request->fechaNacimiento;
         $user->sexo = $request->sexo;
         $user->id_rol = $request->tipoUsuario;
-        $user->username = $request->email;
+        $user->username = $request->username;
 
         if($user->save()){
             return response()->json([
                 'status_auth' => 1,
-                'user' => $user->id
+                'user' => $user
             ], 200);
         }else{
             return response()->json([

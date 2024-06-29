@@ -29,7 +29,13 @@ class HomeController extends Controller
 
     public function home(){
        
-        return Publicacione::with('user')->get();
+        $publicaciones = Publicacione::with('user','comentarios')
+        ->orderBy('id','desc')
+        ->get();
+
+        $rutaImagen = asset('storage/');
+
+        return ['publicaciones'=>$publicaciones,'rutaImagen'=>$rutaImagen];
         
     }
 

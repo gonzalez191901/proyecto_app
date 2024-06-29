@@ -67,7 +67,7 @@ class LoginController extends Controller
 
             return response()->json([
                 'status_auth' => 1,
-                'user' => $user->id
+                'user' => $user
             ], 200);
         } else {
             // Autenticación fallida

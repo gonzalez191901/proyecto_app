@@ -21,4 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'attemptLogin']);
 Route::post('/inicio', [App\Http\Controllers\HomeController::class, 'home']);
 Route::post('/create_user', [App\Http\Controllers\Auth\RegisterController::class, 'createUser']);
+Route::post('/create/publicacion', [App\Http\Controllers\PublicacionController::class, 'create']);
+Route::post('/comentarios', [App\Http\Controllers\PublicacionController::class, 'comentarios']);
+Route::post('/create/comentario', [App\Http\Controllers\PublicacionController::class, 'create_comentario']);
+
+
 
