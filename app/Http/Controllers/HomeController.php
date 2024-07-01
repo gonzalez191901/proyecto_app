@@ -33,7 +33,8 @@ class HomeController extends Controller
         ->orderBy('id','desc')
         ->get();
 
-        $rutaImagen = asset('storage/');
+        //$rutaImagen = url('storage/');
+        $rutaImagen = env('APP_URL').'/proyecto_app/public/storage';
 
         return ['publicaciones'=>$publicaciones,'rutaImagen'=>$rutaImagen];
         

@@ -57,7 +57,8 @@ class UserController extends Controller
         $perfil = User::where('username',$username)->first();
 
         if($perfil){
-            $rutaImagen = asset('storage/');
+            //$rutaImagen = asset('storage/');
+            $rutaImagen = env('APP_URL').'/proyecto_app/public/storage';
 
             return response()->json(['perfil' => $perfil,'rutaImagen'=>$rutaImagen], 200);
         }else{
