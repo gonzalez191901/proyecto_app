@@ -24,6 +24,9 @@ Route::post('/create_user', [App\Http\Controllers\Auth\RegisterController::class
 Route::post('/create/publicacion', [App\Http\Controllers\PublicacionController::class, 'create']);
 Route::post('/comentarios', [App\Http\Controllers\PublicacionController::class, 'comentarios']);
 Route::post('/create/comentario', [App\Http\Controllers\PublicacionController::class, 'create_comentario']);
+Route::post('/user/foto', [App\Http\Controllers\UserController::class, 'agregar_foto']);
+Route::post('/user/profile', [App\Http\Controllers\UserController::class, 'perfil']);
+Route::post('/create/descripcion', [App\Http\Controllers\UserController::class, 'descripcion']);
 
 
 
