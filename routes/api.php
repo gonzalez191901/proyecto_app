@@ -27,6 +27,8 @@ Route::post('/create/comentario', [App\Http\Controllers\PublicacionController::c
 Route::post('/user/foto', [App\Http\Controllers\UserController::class, 'agregar_foto']);
 Route::post('/user/profile', [App\Http\Controllers\UserController::class, 'perfil']);
 Route::post('/create/descripcion', [App\Http\Controllers\UserController::class, 'descripcion']);
+Route::post('/create/event', [App\Http\Controllers\EventosController::class, 'create']);
+
 
 
 
