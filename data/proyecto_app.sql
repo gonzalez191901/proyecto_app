@@ -86,9 +86,9 @@ CREATE TABLE `eventos` (
   `photo` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `fecha_inicio` date NOT NULL,
-  `hora_inicio` time NOT NULL DEFAULT current_timestamp(),
-  `fecha_fin` date NOT NULL DEFAULT current_timestamp(),
-  `hora_fin` time NOT NULL DEFAULT current_timestamp(),
+  `hora_inicio` time NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `hora_fin` time NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

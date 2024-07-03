@@ -28,6 +28,7 @@ Route::post('/user/foto', [App\Http\Controllers\UserController::class, 'agregar_
 Route::post('/user/profile', [App\Http\Controllers\UserController::class, 'perfil']);
 Route::post('/create/descripcion', [App\Http\Controllers\UserController::class, 'descripcion']);
 Route::post('/create/event', [App\Http\Controllers\EventosController::class, 'create']);
+Route::post('/cantidad/eventos', [App\Http\Controllers\EventosController::class, 'cantidad_eventos']);
 
 
 

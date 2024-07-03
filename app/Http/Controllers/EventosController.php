@@ -9,6 +9,21 @@ use App\Models\Evento;
 class EventosController extends Controller
 {
     public function create(Request $request){
+
+
+
+
+
+
+        $request->validate([
+            
+            'title' => 'required',
+            'description' => 'required',
+            'startDate' => 'required',
+            'startTime' => 'required',
+            'endDate' => 'required',
+            'endTime' => 'required',
+        ]);
         if ($request->hasFile('file')) {
             // Obtener el archivo y su nombre original
             $file = $request->file('file');
@@ -53,5 +68,14 @@ class EventosController extends Controller
     
         // Si no se encontró archivo en la solicitud
         return response()->json(['error' => 'No file uploaded'], 400);
+    }
+
+    public function cantidad_eventos(){
+
+        $rutaImagen = env('APP_URL').'/proyecto_app/public/storage';
+        $eventos = Evento::with('user')
+        ->orderBy('id','desc')
+        ->get();
+        return ["eventos"=>$eventos,"rutaImagen"=>$rutaImagen];
     }
 }
