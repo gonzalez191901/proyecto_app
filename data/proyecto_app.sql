@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-07-2024 a las 06:40:26
+-- Tiempo de generación: 03-07-2024 a las 04:42:37
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -68,7 +68,10 @@ INSERT INTO `comentarios` (`id`, `id_usuario`, `id_publicacion`, `comentario`, `
 (25, 11, 13, 'primer comentario', '2024-07-01 09:10:32', '2024-07-01 09:10:32'),
 (26, 11, 13, '...', '2024-07-01 09:10:47', '2024-07-01 09:10:47'),
 (27, 11, 11, 'llll', '2024-07-01 09:10:59', '2024-07-01 09:10:59'),
-(28, 7, 21, 'me gusta', '2024-07-02 08:25:55', '2024-07-02 08:25:55');
+(28, 7, 21, 'me gusta', '2024-07-02 08:25:55', '2024-07-02 08:25:55'),
+(29, 9, 21, 'comentario', '2024-07-03 04:14:41', '2024-07-03 04:14:41'),
+(30, 9, 22, 'mw gusta', '2024-07-03 04:15:14', '2024-07-03 04:15:14'),
+(31, 9, 22, 'nuevo comentario', '2024-07-03 06:05:24', '2024-07-03 06:05:24');
 
 -- --------------------------------------------------------
 
@@ -97,7 +100,9 @@ CREATE TABLE `eventos` (
 INSERT INTO `eventos` (`id`, `id_user`, `titulo`, `photo`, `descripcion`, `fecha_inicio`, `hora_inicio`, `fecha_fin`, `hora_fin`, `created_at`, `updated_at`) VALUES
 (1, 7, 'totilo', '7_20240702035145.jpg', 'descripcion', '2024-07-10', '12:00:00', '2024-07-10', '14:00:00', '2024-07-02 07:51:45', '2024-07-02 07:51:45'),
 (2, 7, 'nuevo evento', '7_20240702042653.jpeg', 'el mejor evento', '2024-07-10', '12:00:00', '2024-07-10', '15:00:00', '2024-07-02 08:26:53', '2024-07-02 08:26:53'),
-(3, 7, 'Tecnologia', '7_20240702042819.jpeg', 'Evento de tecnologia', '2024-07-30', '12:00:00', '2024-08-01', '23:00:00', '2024-07-02 08:28:19', '2024-07-02 08:28:19');
+(3, 7, 'Tecnologia', '7_20240702042819.jpeg', 'Evento de tecnologia', '2024-07-30', '12:00:00', '2024-08-01', '23:00:00', '2024-07-02 08:28:19', '2024-07-02 08:28:19'),
+(4, 7, 'juegos', '7_20240703000818.jpeg', 'los mejores juegos', '2024-06-10', '12:00:00', '2024-08-20', '20:00:00', '2024-07-03 04:08:18', '2024-07-03 04:08:18'),
+(5, 9, 'Fiesta', '9_20240703011900.jpeg', 'jortigjnrothgh', '0004-07-20', '12:00:00', '0004-02-20', '12:00:00', '2024-07-03 05:19:00', '2024-07-03 05:19:00');
 
 -- --------------------------------------------------------
 
@@ -183,7 +188,8 @@ INSERT INTO `publicaciones` (`id`, `created_at`, `updated_at`, `id_user`, `ruta_
 (18, '2024-07-02 06:57:25', '2024-07-02 06:57:25', 7, 'uploads/7/7_20240702025725.jpg', '7_20240702025725.jpg', 'l'),
 (19, '2024-07-02 06:58:24', '2024-07-02 06:58:24', 7, 'uploads/7/7_20240702025824.jpg', '7_20240702025824.jpg', 'tjtyjyj'),
 (20, '2024-07-02 06:59:20', '2024-07-02 06:59:20', 7, 'uploads/7/7_20240702025920.jpg', '7_20240702025920.jpg', 'ghjgtyjytj'),
-(21, '2024-07-02 08:25:45', '2024-07-02 08:25:45', 7, 'uploads/7/7_20240702042545.jpeg', '7_20240702042545.jpeg', 'robots');
+(21, '2024-07-02 08:25:45', '2024-07-02 08:25:45', 7, 'uploads/7/7_20240702042545.jpeg', '7_20240702042545.jpeg', 'robots'),
+(22, '2024-07-03 04:15:03', '2024-07-03 04:15:03', 9, 'uploads/9/9_20240703001503.jpeg', '9_20240703001503.jpeg', 'juegos');
 
 -- --------------------------------------------------------
 
@@ -202,7 +208,7 @@ CREATE TABLE `users` (
   `fecha_naci` date NOT NULL,
   `sexo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cedula` int(11) DEFAULT NULL,
-  `id_rol` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_rol` int(11) NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -215,15 +221,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `apellidos`, `fecha_naci`, `sexo`, `cedula`, `id_rol`, `username`, `photo`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 'oscar', 'gonzalez@gmail.com', NULL, '12345678', NULL, '', '0000-00-00', '', 0, '0', '', NULL, '', '2024-06-26 07:54:29', '2024-06-26 07:54:29'),
-(3, 'oscar', 'gonzalez2@gmail.com', NULL, '12345678', NULL, 'gonzalez', '2024-06-05', 'M', 0, '2', 'ogonza02', NULL, '', '2024-06-26 07:57:43', '2024-06-27 01:55:49'),
-(4, 'omar', 'omar@gmail.com', NULL, '12345678', NULL, '', '0000-00-00', '', 0, '0', '', NULL, '', '2024-06-26 08:25:15', '2024-06-26 08:25:15'),
-(5, 'omar', 'omar2@gmail.com', NULL, '12345678', NULL, '', '0000-00-00', '', 0, '0', '', NULL, '', '2024-06-26 08:29:04', '2024-06-26 08:29:04'),
-(6, 'omar', 'omar3@gmail.com', NULL, '$2y$10$0FsSwgTjQav27QzoFH82gOLbfhmq6uLbIvycE2IDo7k5tekh9//5y', NULL, '', '0000-00-00', '', 0, '0', '', NULL, '', '2024-06-26 08:30:02', '2024-06-26 08:30:02'),
-(7, 'oscar', 'gonzalez191901@gmail.com', NULL, '$2y$10$5LE29jf7YIcfPHrrVfXjd.erVIVwVMfYsWevDGQ9QZRVemYTEy8mi', NULL, 'gonzalez', '1997-08-31', 'M', NULL, 'artista', 'gonzalez191901', '7_20240702042525.jpeg', '', '2024-06-27 05:53:51', '2024-07-02 08:25:25'),
-(9, 'jose', 'joselito@gmail.com', NULL, '$2y$10$IulAb8tEsoDq/JniLB5MJuOud30jpIJrwhzuF0aRViG4jeCXh01lO', NULL, 'martinez', '1940-08-31', 'M', NULL, 'usuario', 'joselito', '9_20240701033222.jpg', 'mi primera descripcion', '2024-06-29 08:44:54', '2024-07-01 09:04:29'),
-(10, 'zahiher', 'zahiher@gmail.com', NULL, '$2y$10$kGA0ACDMeR7YEzK/IZsw6O5KD13TchD4/eejP3zu1ANCOG4R9tthG', NULL, 'gonzalez', '1999-10-14', 'F', NULL, 'usuario', 'zahi1313', NULL, '', '2024-06-30 19:21:25', '2024-06-30 19:21:25'),
-(11, 'jose', 'joseperez@gmail.com', NULL, '$2y$10$vZMR9NdyrmScl8yWn2utqOjZLfdbs7/.o/nbWFK7uiMO5mOCYOAnS', NULL, 'perez', '1997-08-31', 'M', NULL, 'usuario', 'joseperez01', '11_20240701050923.jpg', 'descripcion de prueba 02', '2024-07-01 09:08:51', '2024-07-01 09:22:59');
+(1, 'oscar', 'gonzalez@gmail.com', NULL, '12345678', NULL, '', '0000-00-00', '', 0, 0, '', NULL, '', '2024-06-26 07:54:29', '2024-06-26 07:54:29'),
+(3, 'oscar', 'gonzalez2@gmail.com', NULL, '12345678', NULL, 'gonzalez', '2024-06-05', 'M', 0, 2, 'ogonza02', NULL, '', '2024-06-26 07:57:43', '2024-06-27 01:55:49'),
+(4, 'omar', 'omar@gmail.com', NULL, '12345678', NULL, '', '0000-00-00', '', 0, 0, '', NULL, '', '2024-06-26 08:25:15', '2024-06-26 08:25:15'),
+(5, 'omar', 'omar2@gmail.com', NULL, '12345678', NULL, '', '0000-00-00', '', 0, 0, '', NULL, '', '2024-06-26 08:29:04', '2024-06-26 08:29:04'),
+(6, 'omar', 'omar3@gmail.com', NULL, '$2y$10$0FsSwgTjQav27QzoFH82gOLbfhmq6uLbIvycE2IDo7k5tekh9//5y', NULL, '', '0000-00-00', '', 0, 0, '', NULL, '', '2024-06-26 08:30:02', '2024-06-26 08:30:02'),
+(7, 'oscar', 'gonzalez191901@gmail.com', NULL, '$2y$10$5LE29jf7YIcfPHrrVfXjd.erVIVwVMfYsWevDGQ9QZRVemYTEy8mi', NULL, 'gonzalez', '1997-08-31', 'M', NULL, 1, 'gonzalez191901', '7_20240702042525.jpeg', 'mi descripcion', '2024-06-27 05:53:51', '2024-07-03 02:07:48'),
+(9, 'jose', 'joselito@gmail.com', NULL, '$2y$10$IulAb8tEsoDq/JniLB5MJuOud30jpIJrwhzuF0aRViG4jeCXh01lO', NULL, 'martinez', '1940-08-31', 'M', NULL, 2, 'joselito', '9_20240701033222.jpg', 'mi primera descripcion', '2024-06-29 08:44:54', '2024-07-03 02:07:20'),
+(10, 'zahiher', 'zahiher@gmail.com', NULL, '$2y$10$kGA0ACDMeR7YEzK/IZsw6O5KD13TchD4/eejP3zu1ANCOG4R9tthG', NULL, 'gonzalez', '1999-10-14', 'F', NULL, 1, 'zahi1313', NULL, '', '2024-06-30 19:21:25', '2024-07-03 02:07:48'),
+(11, 'jose', 'joseperez@gmail.com', NULL, '$2y$10$vZMR9NdyrmScl8yWn2utqOjZLfdbs7/.o/nbWFK7uiMO5mOCYOAnS', NULL, 'perez', '1997-08-31', 'M', NULL, 1, 'joseperez01', '11_20240701050923.jpg', 'descripcion de prueba 02', '2024-07-01 09:08:51', '2024-07-03 02:07:48');
 
 --
 -- Índices para tablas volcadas
@@ -283,13 +289,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -307,7 +313,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

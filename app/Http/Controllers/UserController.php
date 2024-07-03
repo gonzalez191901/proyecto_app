@@ -54,7 +54,7 @@ class UserController extends Controller
         
         $username = $request->username;
 
-        $perfil = User::where('username',$username)->first();
+        $perfil = User::with('publicaciones','publicaciones.user','publicaciones.comentarios')->where('username',$username)->first();
 
         if($perfil){
             //$rutaImagen = asset('storage/');
