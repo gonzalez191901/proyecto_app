@@ -5,11 +5,17 @@ use App\Models\Publicacione;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Comentario;
+use App\Models\Reaccione;
 
 class PublicacionController extends Controller
 {
     public function create(Request $request){
 
+        $request->validate([
+            
+            'description' => 'required'
+        ]);
+        
         if ($request->hasFile('file')) {
             // Obtener el archivo y su nombre original
             $file = $request->file('file');
@@ -68,5 +74,40 @@ class PublicacionController extends Controller
         $model->save();
 
         return response()->json($model, 200);
+    }
+
+    public function like(Request $request){
+
+        if($request->isLiked == true){
+
+            $verificador = Reaccione::where('id_publicacion', $request->id_publicacion)
+            ->where('id_user', $request->id_user)
+            ->get();
+
+            if(count($verificador) > 0){
+                Reaccione::where('id_publicacion', $request->id_publicacion)
+                        ->where('id_user', $request->id_user)
+                        ->delete();
+            }
+
+            $model = new Reaccione;
+
+            $model->id_publicacion = $request->id_publicacion;
+            $model->id_user = $request->id_user;
+            $model->save();
+
+            return "Agregado";
+
+        }else{
+
+            Reaccione::where('id_publicacion', $request->id_publicacion)
+                        ->where('id_user', $request->id_user)
+                        ->delete();
+
+            return "Eliminado";
+
+        }
+        
+       
     }
 }

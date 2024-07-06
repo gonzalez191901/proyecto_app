@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Publicacione;
+use App\Models\Reaccione;
 
 class HomeController extends Controller
 {
@@ -27,16 +28,18 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function home(){
+    public function home(Request $request){
        
-        $publicaciones = Publicacione::with('user','comentarios')
+        $publicaciones = Publicacione::with('user','comentarios','likes')
         ->orderBy('id','desc')
         ->get();
 
         //$rutaImagen = url('storage/');
         $rutaImagen = env('APP_URL').'/proyecto_app/public/storage';
 
-        return ['publicaciones'=>$publicaciones,'rutaImagen'=>$rutaImagen];
+        $mis_likes = Reaccione::where('id_user', $request->id_user)->get();
+
+        return ['publicaciones'=>$publicaciones,'rutaImagen'=>$rutaImagen,'mis_likes'=>$mis_likes];
         
     }
 

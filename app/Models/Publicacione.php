@@ -18,4 +18,9 @@ class Publicacione extends Model
     {
         return $this->hasMany(Comentario::class, 'id_publicacion','id');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Reaccione::class, 'id_publicacion');
+    }
 }

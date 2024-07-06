@@ -84,7 +84,12 @@ class RegisterController extends Controller
             'sexo' => 'required|string',
             //'cedula' => 'required|string',
             'tipoUsuario' => 'required|string',
-            'username' => 'required|string|unique:users',
+            'username' => [
+                'required',
+                'string',
+                'unique:users',
+                'regex:/^[\w]+$/'
+            ],
             'password' => 'required|min:8|string',
             'password2' => 'required|same:password',
         ]);

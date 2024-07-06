@@ -5,25 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Evento;
+use Carbon\Carbon;
 
 class EventosController extends Controller
 {
     public function create(Request $request){
 
-
-
-
-
-
         $request->validate([
             
             'title' => 'required',
             'description' => 'required',
-            'startDate' => 'required',
+            'startDate' => 'required|date|before_or_equal:today',
             'startTime' => 'required',
-            'endDate' => 'required',
+            'endDate' => 'required|date|after_or_equal:startDate',
             'endTime' => 'required',
+        ],[
+            'startDate.before_or_equal' => 'La fecha de inicio no puede ser posterior a la fecha actual.',
+            'endDate.after_or_equal' => 'La fecha de finalización no puede ser anterior a la Fecha de Inicio.',
         ]);
+
+  
+
         if ($request->hasFile('file')) {
             // Obtener el archivo y su nombre original
             $file = $request->file('file');
@@ -74,8 +76,10 @@ class EventosController extends Controller
 
         $rutaImagen = env('APP_URL').'/proyecto_app/public/storage';
         $eventos = Evento::with('user')
+        ->where('fecha_inicio', '<=', Carbon::now())
         ->orderBy('id','desc')
         ->get();
+       
         return ["eventos"=>$eventos,"rutaImagen"=>$rutaImagen];
     }
 }

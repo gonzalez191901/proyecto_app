@@ -29,6 +29,7 @@ Route::post('/user/profile', [App\Http\Controllers\UserController::class, 'perfi
 Route::post('/create/descripcion', [App\Http\Controllers\UserController::class, 'descripcion']);
 Route::post('/create/event', [App\Http\Controllers\EventosController::class, 'create']);
 Route::post('/cantidad/eventos', [App\Http\Controllers\EventosController::class, 'cantidad_eventos']);
+Route::post('/like_publicacion', [App\Http\Controllers\PublicacionController::class, 'like']);
 
 
 
