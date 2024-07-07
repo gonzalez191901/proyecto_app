@@ -96,7 +96,7 @@ class PublicacionController extends Controller
             $model->id_user = $request->id_user;
             $model->save();
 
-            return "Agregado";
+            $estatus = "Agregado";
 
         }else{
 
@@ -104,10 +104,10 @@ class PublicacionController extends Controller
                         ->where('id_user', $request->id_user)
                         ->delete();
 
-            return "Eliminado";
+            $estatus = "Eliminado";
 
         }
         
-       
+       return ['status'=>$estatus, 'likes'=>Reaccione::where('id_publicacion', $request->id_publicacion)->get()];
     }
 }
