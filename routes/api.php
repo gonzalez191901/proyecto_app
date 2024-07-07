@@ -30,7 +30,9 @@ Route::post('/create/descripcion', [App\Http\Controllers\UserController::class, 
 Route::post('/create/event', [App\Http\Controllers\EventosController::class, 'create']);
 Route::post('/cantidad/eventos', [App\Http\Controllers\EventosController::class, 'cantidad_eventos']);
 Route::post('/like_publicacion', [App\Http\Controllers\PublicacionController::class, 'like']);
-
+Route::post('/user/mis_datos', [App\Http\Controllers\UserController::class, 'mis_datos']);
+Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update']);
+Route::post('/publicacion/delete', [App\Http\Controllers\PublicacionController::class, 'delete']);
 
 
 

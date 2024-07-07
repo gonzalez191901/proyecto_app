@@ -15,12 +15,12 @@ class EventosController extends Controller
             
             'title' => 'required',
             'description' => 'required',
-            'startDate' => 'required|date|before_or_equal:today',
+            'startDate' => 'required|date|after_or_equal:today',
             'startTime' => 'required',
             'endDate' => 'required|date|after_or_equal:startDate',
             'endTime' => 'required',
         ],[
-            'startDate.before_or_equal' => 'La fecha de inicio no puede ser posterior a la fecha actual.',
+            'startDate.after_or_equal' => 'La fecha de inicio no puede ser menor a la fecha actual.',
             'endDate.after_or_equal' => 'La fecha de finalización no puede ser anterior a la Fecha de Inicio.',
         ]);
 

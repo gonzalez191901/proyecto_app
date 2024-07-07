@@ -110,4 +110,11 @@ class PublicacionController extends Controller
         
        return ['status'=>$estatus, 'likes'=>Reaccione::where('id_publicacion', $request->id_publicacion)->get()];
     }
+
+    public function delete(Request $request){
+
+        $publicacion = Publicacione::find($request->publicacion);
+        $publicacion->delete();
+        return $request->publicacion;
+    }
 }

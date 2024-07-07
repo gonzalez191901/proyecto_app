@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -75,4 +76,45 @@ class UserController extends Controller
 
         return response()->json(['user' => $user], 200);
     }
+
+    public function mis_datos(Request $request){
+        return  User::find($request->id_user);
+    }
+
+    public function update(Request $request){
+        $request->validate([
+            
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'username' => [
+                'required',
+                'string',
+                'regex:/^[\w]+$/',
+                Rule::unique('users')->ignore($request->id_user),
+            ],
+            'password' => $request->input('view_password') ? ['required', 'min:8', 'string'] : [],
+            'password2' => $request->input('view_password') ? ['required', 'same:password'] : [],
+            //'view_password' => 'required'
+        ]);
+
+        $user = User::find($request->id_user);
+
+        // Actualizar los campos
+        $user->name = $request->input('nombre');
+        $user->apellidos = $request->input('apellido');
+        $user->username = $request->input('username');
+        
+        if ($request->input('view_password') == true) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->update();
+        
+
+        return $user;
+
+
+
+    }
+    
 }
