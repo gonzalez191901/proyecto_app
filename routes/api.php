@@ -33,6 +33,7 @@ Route::post('/like_publicacion', [App\Http\Controllers\PublicacionController::cl
 Route::post('/user/mis_datos', [App\Http\Controllers\UserController::class, 'mis_datos']);
 Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update']);
 Route::post('/publicacion/delete', [App\Http\Controllers\PublicacionController::class, 'delete']);
+Route::post('/user/search', [App\Http\Controllers\UserController::class, 'search']);
 
 
 

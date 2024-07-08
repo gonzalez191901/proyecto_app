@@ -116,5 +116,17 @@ class UserController extends Controller
 
 
     }
+
+    public function search(Request $request){
+        $username = $request->username;
+       
+        // Buscar usuarios que coincidan parcialmente con el 'username'
+        $users = User::where('username', 'like', '%' . $username . '%')->get();
+
+        // Retornar la colección de usuarios
+        $rutaImagen = env('APP_URL').'/proyecto_app/public/storage';
+
+        return response()->json(['users' => $users,'rutaImagen'=>$rutaImagen], 200);
+    }
     
 }
